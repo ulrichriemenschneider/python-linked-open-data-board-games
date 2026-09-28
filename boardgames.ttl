@@ -1,0 +1,90 @@
+@prefix bg: <https://boardgames.example/> .
+@prefix game: <https://boardgames.example/game/> .
+@prefix person: <https://boardgames.example/person/> .
+@prefix publisher: <https://boardgames.example/publisher/> .
+@prefix mechanic: <https://boardgames.example/mechanic/> .
+@prefix scheme: <https://boardgames.example/scheme/> .
+@prefix prop: <https://boardgames.example/property/> .
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+
+# ---------------------------------------------------------
+# Board Game
+# ---------------------------------------------------------
+
+game:auf-nach-japan
+    rdf:type bg:BoardGame ;
+    rdfs:label "Auf nach Japan!"@de ;
+    prop:author
+        person:josh-wood,
+        person:mark-wootton ;
+    prop:publisher publisher:schwerkraft-verlag ;
+    prop:yearOfPublication 2025 ;
+    prop:minPlayer 1 ;
+    prop:maxPlayer 4 ;
+    prop:mechanic
+        mechanic:set-collection,
+        mechanic:hand-management .
+
+
+# ---------------------------------------------------------
+# Persons
+# ---------------------------------------------------------
+
+person:josh-wood
+    rdf:type bg:Person ;
+    rdfs:label "Josh Wood" .
+
+person:mark-wootton
+    rdf:type bg:Person ;
+    rdfs:label "Mark Wootton" .
+
+
+# ---------------------------------------------------------
+# Publisher
+# ---------------------------------------------------------
+
+publisher:schwerkraft-verlag
+    rdf:type bg:Publisher ;
+    rdfs:label "Schwerkraft-Verlag"@de .
+
+
+# ---------------------------------------------------------
+# SKOS Concept Scheme
+# ---------------------------------------------------------
+
+scheme:board-game-mechanics
+    rdf:type skos:ConceptScheme ;
+    skos:prefLabel "Board Game Mechanics"@en ;
+    skos:prefLabel "Brettspielmechaniken"@de .
+
+
+# ---------------------------------------------------------
+# SKOS Concepts
+# ---------------------------------------------------------
+
+mechanic:card-mechanics
+    rdf:type skos:Concept ;
+    skos:prefLabel "Card Mechanics"@en ;
+    skos:prefLabel "Kartenmechaniken"@de ;
+    skos:inScheme scheme:board-game-mechanics .
+
+mechanic:set-collection
+    rdf:type skos:Concept ;
+    skos:prefLabel "Set Collection"@en ;
+    skos:prefLabel "Set-Sammlung"@de ;
+    skos:altLabel "Set Collecting"@en ;
+    skos:hiddenLabel "SetCollection"@en ;
+    skos:inScheme scheme:board-game-mechanics ;
+    skos:broader mechanic:card-mechanics ;
+    skos:related mechanic:hand-management .
+
+mechanic:hand-management
+    rdf:type skos:Concept ;
+    skos:prefLabel "Hand Management"@en ;
+    skos:prefLabel "Handkarten-Management"@de ;
+    skos:inScheme scheme:board-game-mechanics ;
+    skos:broader mechanic:card-mechanics .

@@ -26,8 +26,9 @@ game:auf-nach-japan
     prop:minPlayer 1 ;
     prop:maxPlayer 4 ;
     prop:mechanic
-        mechanic:set-collection,
-        mechanic:hand-management .
+        mechanic:set-collection ,
+        mechanic:hand-management ,
+        mechanic:deck-management .
 
 
 # ---------------------------------------------------------
@@ -88,3 +89,10 @@ mechanic:hand-management
     skos:prefLabel "Handkarten-Management"@de ;
     skos:inScheme scheme:board-game-mechanics ;
     skos:broader mechanic:card-mechanics .
+
+mechanic:deck-management
+    rdf:type skos:Concept ;
+    skos:prefLabel "Deck Management"@en ;
+    skos:prefLabel "Deck-Verwaltung"@de ;
+    skos:inScheme scheme:board-game-mechanics ;
+    skos:broader mechanic:hand-management .

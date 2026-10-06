@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ publisher.name }} | Board Game Linked Data
+{% endblock %}
+
+{% block content %}
+
+    <h2>{{ publisher.name }}</h2>
+
+    <h3>Verlag</h3>
+
+    <p>
+        <strong>IRI:</strong>
+        {{ publisher.iri }}
+    </p>
+
+    <h3>Spiele</h3>
+
+    <ul>
+        {% for game in publisher.games %}
+            <li>
+                <a href="{{ url_for('game', game_id=game.id) }}">
+                    {{ game.name }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

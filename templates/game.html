@@ -27,6 +27,30 @@
         {{ game.max_players }}
     </p>
 
+    <h3>Autoren</h3>
+
+    <ul>
+        {% for author in game.authors %}
+            <li>
+                <a href="{{ url_for('author', author_id=author.id) }}">
+                    {{ author.name }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h3>Verlage</h3>
+
+    <ul>
+        {% for publisher in game.publishers %}
+            <li>
+                <a href="{{ url_for('publisher', publisher_id=publisher.id) }}">
+                    {{ publisher.name }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
     <h3>Mechaniken</h3>
 
     <ul>

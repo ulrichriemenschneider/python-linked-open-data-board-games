@@ -4,6 +4,16 @@ from query_rdf import build_mechanic_view, build_mechanic_view_by_id
 from query_rdf import build_mechanic_view_by_id, build_game_view_by_id
 from query_rdf import build_mechanic_view_by_id, build_game_view_by_id, build_category_view_by_id
 from query_rdf import build_index_view, build_mechanic_view_by_id, build_game_view_by_id, build_category_view_by_id
+from query_rdf import build_index_view, build_mechanic_view_by_id, build_category_view_by_id, build_game_view_by_id, build_author_view_by_id
+from query_rdf import (
+    build_index_view,
+    build_mechanic_view_by_id,
+    build_category_view_by_id,
+    build_game_view_by_id,
+    build_author_view_by_id,
+    build_publisher_view_by_id,
+)
+
 
 app = Flask(__name__)
 
@@ -68,6 +78,36 @@ def category(category_id):
     return render_template(
         "category.html",
         category=data
+    )
+
+@app.route("/author/<int:author_id>")
+def author(author_id):
+    data = build_author_view_by_id(
+        graph,
+        author_id
+    )
+
+    if data is None:
+        return "Autor nicht gefunden", 404
+
+    return render_template(
+        "author.html",
+        author=data
+    )
+
+@app.route("/publisher/<int:publisher_id>")
+def publisher(publisher_id):
+    data = build_publisher_view_by_id(
+        graph,
+        publisher_id
+    )
+
+    if data is None:
+        return "Verlag nicht gefunden", 404
+
+    return render_template(
+        "publisher.html",
+        publisher=data
     )
 
 

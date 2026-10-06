@@ -3,6 +3,7 @@ from rdflib import Graph
 from query_rdf import build_mechanic_view, build_mechanic_view_by_id
 from query_rdf import build_mechanic_view_by_id, build_game_view_by_id
 from query_rdf import build_mechanic_view_by_id, build_game_view_by_id, build_category_view_by_id
+from query_rdf import build_index_view, build_mechanic_view_by_id, build_game_view_by_id, build_category_view_by_id
 
 app = Flask(__name__)
 
@@ -16,9 +17,11 @@ graph.parse(
 
 @app.route("/")
 def index():
-    return (
-        f"<h1>Board Game Linked Data</h1>"
-        f"<p>{len(graph)} RDF-Tripel geladen.</p>"
+    data = build_index_view(graph)
+
+    return render_template(
+        "index.html",
+        data=data
     )
 
 

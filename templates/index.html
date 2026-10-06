@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Board Game Linked Data</title>
+</head>
+
+<body>
+
+    <h1>Board Game Linked Data</h1>
+
+    <p>
+        Eine kleine Linked-Data-Anwendung mit RDF,
+        SKOS und SPARQL.
+    </p>
+
+    <h2>Spiele</h2>
+
+    <ul>
+        {% for game in data.games %}
+            <li>
+                <a href="{{ url_for('game', game_id=game.id) }}">
+                    {{ game.label }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h2>Mechaniken</h2>
+
+    <ul>
+        {% for mechanic in data.mechanics %}
+            <li>
+                <a href="{{ url_for('mechanic', mechanic_id=mechanic.id) }}">
+                    {{ mechanic.label }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h2>Kategorien</h2>
+
+    <ul>
+        {% for category in data.categories %}
+            <li>
+                <a href="{{ url_for('category', category_id=category.id) }}">
+                    {{ category.label }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+</body>
+
+</html>

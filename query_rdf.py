@@ -14,6 +14,87 @@ graph.parse(
 
 print(f"Anzahl der Tripel: {len(graph)}")
 
+def build_index_view(graph):
+    games_query = """
+    PREFIX bg: <https://boardgames.example/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+    SELECT ?game ?label
+    WHERE {
+        ?game
+            a bg:BoardGame ;
+            rdfs:label ?label .
+    }
+    ORDER BY ?label
+    LIMIT 10
+    """
+
+    mechanics_query = """
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX scheme: <https://boardgames.example/scheme/>
+
+    SELECT ?mechanic ?label
+    WHERE {
+        ?mechanic
+            a skos:Concept ;
+            skos:prefLabel ?label ;
+            skos:inScheme scheme:bgg-mechanics .
+    }
+    ORDER BY ?label
+    LIMIT 10
+    """
+
+    categories_query = """
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX scheme: <https://boardgames.example/scheme/>
+
+    SELECT ?category ?label
+    WHERE {
+        ?category
+            a skos:Concept ;
+            skos:prefLabel ?label ;
+            skos:inScheme scheme:bgg-categories .
+    }
+    ORDER BY ?label
+    LIMIT 10
+    """
+
+    games = graph.query(games_query)
+    mechanics = graph.query(mechanics_query)
+    categories = graph.query(categories_query)
+
+    data = {
+        "games": [],
+        "mechanics": [],
+        "categories": [],
+    }
+
+    for game in games:
+        iri = str(game.game)
+
+        data["games"].append({
+            "id": int(iri.rsplit("/", 1)[-1]),
+            "label": str(game.label),
+        })
+
+    for mechanic in mechanics:
+        iri = str(mechanic.mechanic)
+
+        data["mechanics"].append({
+            "id": int(iri.rsplit("/", 1)[-1]),
+            "label": str(mechanic.label),
+        })
+
+    for category in categories:
+        iri = str(category.category)
+
+        data["categories"].append({
+            "id": int(iri.rsplit("/", 1)[-1]),
+            "label": str(category.label),
+        })
+
+    return data
+
 def build_category_view_by_id(
     graph,
     category_id

@@ -1,0 +1,4 @@
+Flask
+rdflib
+requests
+python-dotenv

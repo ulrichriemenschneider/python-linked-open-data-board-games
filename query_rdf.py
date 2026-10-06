@@ -264,6 +264,59 @@ def get_game_publishers(graph, game_iri):
     )
 
 def build_index_view(graph):
+    stats_query = """
+    PREFIX bg: <https://boardgames.example/>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX scheme: <https://boardgames.example/scheme/>
+
+    SELECT
+        ?gameCount
+        ?authorCount
+        ?publisherCount
+        ?mechanicCount
+        ?categoryCount
+    WHERE {
+        {
+            SELECT (COUNT(?game) AS ?gameCount)
+            WHERE {
+                ?game a bg:BoardGame .
+            }
+        }
+
+        {
+            SELECT (COUNT(?author) AS ?authorCount)
+            WHERE {
+                ?author a bg:Person .
+            }
+        }
+
+        {
+            SELECT (COUNT(?publisher) AS ?publisherCount)
+            WHERE {
+                ?publisher a bg:Publisher .
+            }
+        }
+
+        {
+            SELECT (COUNT(?mechanic) AS ?mechanicCount)
+            WHERE {
+                ?mechanic
+                    a skos:Concept ;
+                    skos:inScheme scheme:bgg-mechanics .
+            }
+        }
+
+        {
+            SELECT (COUNT(?category) AS ?categoryCount)
+            WHERE {
+                ?category
+                    a skos:Concept ;
+                    skos:inScheme scheme:bgg-categories .
+            }
+        }
+    }
+    """
+
     games_query = """
     PREFIX bg: <https://boardgames.example/>
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -308,11 +361,20 @@ def build_index_view(graph):
     LIMIT 10
     """
 
+    stats_result = list(graph.query(stats_query))[0]
+
     games = graph.query(games_query)
     mechanics = graph.query(mechanics_query)
     categories = graph.query(categories_query)
 
     data = {
+        "stats": {
+            "games": int(stats_result.gameCount),
+            "authors": int(stats_result.authorCount),
+            "publishers": int(stats_result.publisherCount),
+            "mechanics": int(stats_result.mechanicCount),
+            "categories": int(stats_result.categoryCount),
+        },
         "games": [],
         "mechanics": [],
         "categories": [],

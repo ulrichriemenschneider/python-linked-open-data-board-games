@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ mechanic.label }}</title>
+</head>
+
+<body>
+
+    <h1>{{ mechanic.label }}</h1>
+
+    <h2>Concept</h2>
+
+    <p>
+        <strong>IRI:</strong>
+        {{ mechanic.iri }}
+    </p>
+
+    <h2>Concept Scheme</h2>
+
+    <p>
+        {{ mechanic.scheme.label }}
+    </p>
+
+    <p>
+        <strong>IRI:</strong>
+        {{ mechanic.scheme.iri }}
+    </p>
+
+    <h2>Verwendet von</h2>
+
+    <ul>
+        {% for game in mechanic.games %}
+            <li>
+                <a href="{{ url_for('game', game_id=game.id) }}">
+                    {{ game.label }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>

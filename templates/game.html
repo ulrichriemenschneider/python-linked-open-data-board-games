@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{ game.name }}</title>
+</head>
+
+<body>
+
+    <h1>{{ game.name }}</h1>
+
+    <h2>Spiel</h2>
+
+    <p>
+        <strong>IRI:</strong>
+        {{ game.iri }}
+    </p>
+
+    <p>
+        <strong>Erscheinungsjahr:</strong>
+        {{ game.year }}
+    </p>
+
+    <p>
+        <strong>Spieler:</strong>
+        {{ game.min_players }}
+        bis
+        {{ game.max_players }}
+    </p>
+
+    <h2>Mechaniken</h2>
+
+    <ul>
+        {% for mechanic in game.mechanics %}
+            <li>
+                <a href="{{ url_for('mechanic', mechanic_id=mechanic.id) }}">
+                    {{ mechanic.label }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h2>Kategorien</h2>
+
+    <ul>
+        {% for category in game.categories %}
+            <li>
+                <a href="{{ url_for('category', category_id=category.id) }}">
+                    {{ category.label }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>

@@ -1,623 +1,491 @@
-# Python Linked Open Data – Board Games
+# Board Game Linked Data
 
-Dieses Projekt ist ein kleines Lernprojekt zum Verständnis von **Linked Open Data (LOD)**, **RDF**, **Turtle**, **SKOS** und der Verarbeitung von RDF-Daten mit Python.
+A small educational project for learning and experimenting with **Linked Data, RDF, SKOS and SPARQL** using board game data.
 
-Als Beispieldomäne werden **Brettspiele** verwendet. Informationen über Spiele, Autoren, Verlage und Spielmechaniken werden nicht als klassische Tabellen oder Python-Objekte gespeichert, sondern als **RDF-Graph** modelliert.
+The project uses data from [BoardGameGeek (BGG)](https://boardgamegeek.com/) and transforms it into an RDF graph. A small Flask application makes the resulting resources accessible and allows navigation between board games, mechanics and categories.
 
-Das Projekt soll insbesondere zeigen:
+## Purpose
 
-- wie RDF-Daten aus **Subjekt – Prädikat – Objekt** aufgebaut sind,
-- wie Ressourcen über **IRIs** eindeutig identifiziert werden,
-- wie **Namespaces und Prefixes** funktionieren,
-- wie RDF mit **Turtle** geschrieben werden kann,
-- wie **SKOS Concepts** modelliert werden,
-- wie Beziehungen zwischen Concepts dargestellt werden,
-- wie Python mit **RDFLib** einen RDF-Graphen laden und durchsuchen kann.
+This project was created as a practical way to understand the concepts behind **Linked Open Data and semantic web technologies**.
+
+Instead of working with an abstract or scientific domain, board games are used as an easier-to-understand example.
+
+The main topics explored in this project are:
+
+- RDF and triples
+- IRIs and namespaces
+- RDF resources and literals
+- RDF classes and properties
+- SKOS concepts and concept schemes
+- SPARQL queries
+- RDFLib
+- Linked Data modelling
+- Navigating relationships between RDF resources
+- Presenting RDF data through a web application
+
+The project also serves as preparation for working with semantic web technologies used by projects such as **VIVO/Vitro**.
 
 ---
 
-## Projektstruktur
+## Current Architecture
+
+The basic data flow is:
+
+```text
+BoardGameGeek
+      │
+      ▼
+BGG Ranking CSV
+      │
+      ▼
+BGG XML API
+      │
+      ▼
+Python Importer
+      │
+      ▼
+RDFLib
+      │
+      ▼
+RDF Graph / Turtle
+      │
+      ▼
+SPARQL
+      │
+      ▼
+Python View Model
+      │
+      ▼
+Flask + Jinja
+      │
+      ▼
+HTML
+```
+
+---
+
+## RDF Model
+
+The project currently models several types of resources.
+
+### Board Games
+
+Board games are represented as RDF resources:
+
+```turtle
+game:224517
+    rdf:type bg:BoardGame ;
+    rdfs:label "Brass: Birmingham" ;
+    prop:yearOfPublication 2018 ;
+    prop:minPlayer 2 ;
+    prop:maxPlayer 4 .
+```
+
+Board games can be connected to other resources such as:
+
+```text
+BoardGame
+   │
+   ├── author ───────► Person
+   │
+   ├── publisher ────► Publisher
+   │
+   ├── mechanic ─────► skos:Concept
+   │
+   └── category ─────► skos:Concept
+```
+
+---
+
+## SKOS
+
+Board game mechanics and categories are represented as **SKOS concepts** instead of simple strings.
+
+Example:
+
+```turtle
+mechanic:2040
+    rdf:type skos:Concept ;
+    skos:prefLabel "Hand Management"@en ;
+    skos:inScheme scheme:bgg-mechanics .
+```
+
+Mechanics and categories use separate concept schemes:
+
+```text
+scheme:bgg-mechanics
+scheme:bgg-categories
+```
+
+This makes it possible to treat concepts as independent resources with their own IRIs.
+
+A board game therefore does not simply contain the text:
+
+```text
+"Hand Management"
+```
+
+Instead, it links to the resource:
+
+```text
+https://boardgames.example/mechanic/2040
+```
+
+The label is only a property describing that resource.
+
+---
+
+## BoardGameGeek Import
+
+The project uses two BGG data sources.
+
+### Ranking Data
+
+The official BoardGameGeek ranking dump provides basic information such as:
+
+- BGG ID
+- name
+- publication year
+- rank
+- average rating
+- Bayesian average
+- number of ratings
+
+The ranking ZIP file is downloaded manually from the BoardGameGeek data dump page and placed in:
+
+```text
+importer/data/
+```
+
+The importer extracts and processes the CSV file.
+
+### BGG XML API
+
+Additional information is retrieved through the BGG XML API, including:
+
+- designers
+- artists
+- publishers
+- mechanics
+- categories
+- minimum number of players
+- maximum number of players
+
+The API requires a BoardGameGeek application token.
+
+The token is stored locally in:
+
+```text
+.env
+```
+
+Example:
+
+```text
+BGG_TOKEN=your_token_here
+```
+
+The `.env` file must **not** be committed to Git.
+
+---
+
+## RDF Generation
+
+The imported BGG data is transformed into RDF using **RDFLib**.
+
+The generated graph is currently stored as:
+
+```text
+data/bgg_boardgames.ttl
+```
+
+BGG IDs are used to create stable local resource identifiers.
+
+Examples:
+
+```text
+https://boardgames.example/game/224517
+
+https://boardgames.example/mechanic/2040
+
+https://boardgames.example/category/...
+
+https://boardgames.example/person/...
+
+https://boardgames.example/publisher/...
+```
+
+Using IDs instead of names prevents resource identity from depending on labels.
+
+---
+
+## SPARQL
+
+The RDF graph can be queried using SPARQL.
+
+Example:
+
+```sparql
+PREFIX bg: <https://boardgames.example/>
+PREFIX prop: <https://boardgames.example/property/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?gameName ?mechanicName
+WHERE {
+    ?game
+        a bg:BoardGame ;
+        rdfs:label ?gameName ;
+        prop:mechanic ?mechanic .
+
+    ?mechanic
+        a skos:Concept ;
+        skos:prefLabel ?mechanicName .
+}
+ORDER BY ?gameName ?mechanicName
+```
+
+SPARQL queries are used by the Python application to retrieve resources and their relationships from the graph.
+
+---
+
+## Web Application
+
+A small **Flask** application provides a web interface for the RDF data.
+
+The application loads:
+
+```text
+data/bgg_boardgames.ttl
+```
+
+into an RDFLib graph.
+
+The general request flow is:
+
+```text
+Browser
+   │
+   ▼
+Flask Route
+   │
+   ▼
+Python Query Function
+   │
+   ▼
+SPARQL
+   │
+   ▼
+RDF Graph
+   │
+   ▼
+Python Dictionary
+   │
+   ▼
+Jinja Template
+   │
+   ▼
+HTML
+```
+
+---
+
+## Resource Pages
+
+Resources are addressed by their IDs rather than their labels.
+
+### Board Game
+
+```text
+/game/<id>
+```
+
+Example:
+
+```text
+/game/224517
+```
+
+A game page currently displays information such as:
+
+- name
+- IRI
+- publication year
+- player count
+- mechanics
+- categories
+
+### Mechanic
+
+```text
+/mechanic/<id>
+```
+
+A mechanic is represented as a `skos:Concept`.
+
+The page displays:
+
+- preferred label
+- IRI
+- concept scheme
+- board games using the mechanic
+
+### Category
+
+```text
+/category/<id>
+```
+
+Categories are also represented as `skos:Concept` resources and belong to their own concept scheme.
+
+The page displays:
+
+- preferred label
+- IRI
+- concept scheme
+- board games belonging to the category
+
+---
+
+## Linked Navigation
+
+The Flask application allows navigation through relationships in the RDF graph.
+
+For example:
+
+```text
+Board Game
+    │
+    ├──► Mechanic
+    │       │
+    │       └──► Board Games using this mechanic
+    │
+    └──► Category
+            │
+            └──► Board Games in this category
+```
+
+This demonstrates an important Linked Data principle:
+
+> Resources are identified by IRIs and connected to other resources through explicitly defined relationships.
+
+Labels such as `"Hand Management"` are descriptions of resources, not their identities.
+
+---
+
+## Project Structure
 
 ```text
 python_lod/
-├── boardgames.ttl
-├── main.py
-└── README.md
-```
-
-`boardgames.ttl` enthält den eigentlichen RDF-Graphen.
-
-`main.py` lädt diesen Graphen mit RDFLib und liest Informationen daraus aus.
-
----
-
-# boardgames.ttl
-
-Die Datei `boardgames.ttl` enthält die RDF-Daten des Projekts im **Turtle-Format**.
-
-## Prefixes und Namespaces
-
-Am Anfang der Datei werden verschiedene Prefixes definiert:
-
-```turtle
-@prefix bg: <https://boardgames.example/> .
-@prefix game: <https://boardgames.example/game/> .
-@prefix person: <https://boardgames.example/person/> .
-@prefix publisher: <https://boardgames.example/publisher/> .
-@prefix mechanic: <https://boardgames.example/mechanic/> .
-@prefix scheme: <https://boardgames.example/scheme/> .
-@prefix prop: <https://boardgames.example/property/> .
-
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-```
-
-Die Prefixes sind Abkürzungen für vollständige IRIs.
-
-Zum Beispiel:
-
-```turtle
-game:auf-nach-japan
-```
-
-steht für:
-
-```text
-https://boardgames.example/game/auf-nach-japan
-```
-
-Die Prefixes verändern also nicht die Identität einer Ressource. Sie machen die Turtle-Datei lediglich besser lesbar.
-
----
-
-## RDF-Tripel
-
-RDF beschreibt Informationen grundsätzlich als Tripel:
-
-```text
-Subjekt → Prädikat → Objekt
-```
-
-Beispielsweise:
-
-```turtle
-game:auf-nach-japan
-    prop:publisher publisher:schwerkraft-verlag .
-```
-
-entspricht:
-
-```text
-Auf nach Japan! → publisher → Schwerkraft-Verlag
-```
-
-Das Spiel ist das **Subjekt**, `publisher` das **Prädikat** und der Verlag das **Objekt**.
-
----
-
-## Das Brettspiel als Ressource
-
-Das Spiel wird als eigene RDF-Ressource beschrieben:
-
-```turtle
-game:auf-nach-japan
-    rdf:type bg:BoardGame ;
-    rdfs:label "Auf nach Japan!"@de ;
-    prop:author
-        person:josh-wood,
-        person:mark-wootton ;
-    prop:publisher publisher:schwerkraft-verlag ;
-    prop:yearOfPublication 2025 ;
-    prop:minPlayer 1 ;
-    prop:maxPlayer 4 ;
-    prop:mechanic
-        mechanic:set-collection,
-        mechanic:hand-management .
-```
-
-Das Spiel besitzt damit unter anderem Beziehungen zu:
-
-- Autoren
-- einem Verlag
-- Spielmechaniken
-
-Andere Eigenschaften wie Erscheinungsjahr oder Spieleranzahl werden als Literale gespeichert.
-
-Ein wichtiger Unterschied besteht deshalb zwischen **Ressourcen** und **Literalen**.
-
-Beispiel für eine Ressource:
-
-```turtle
-prop:author person:josh-wood
-```
-
-Beispiel für ein Literal:
-
-```turtle
-prop:yearOfPublication 2025
+├── .env
+├── .gitignore
+├── app.py
+├── query_rdf.py
+├── README.md
+│
+├── data/
+│   ├── boardgames.ttl
+│   ├── mechanics.ttl
+│   ├── ontology.ttl
+│   └── bgg_boardgames.ttl
+│
+├── importer/
+│   ├── data/
+│   │   └── boardgames_ranks.csv
+│   ├── bgg_games.py
+│   ├── bgg_importer.py
+│   └── rdf_importer.py
+│
+└── templates/
+    ├── game.html
+    ├── mechanic.html
+    └── category.html
 ```
 
 ---
 
-## Personen und Verlag
+## Technologies
 
-Autoren und Verlag werden ebenfalls als eigenständige Ressourcen modelliert:
-
-```turtle
-person:josh-wood
-    rdf:type bg:Person ;
-    rdfs:label "Josh Wood" .
-```
-
-Dadurch ist Josh Wood nicht nur der Text `"Josh Wood"`, sondern eine Ressource mit einer eigenen IRI:
-
-```text
-https://boardgames.example/person/josh-wood
-```
-
-Diese Ressource könnte später um weitere Informationen ergänzt und von beliebig vielen Spielen referenziert werden.
-
-Dasselbe Prinzip wird für den Verlag verwendet.
+- Python
+- Flask
+- Jinja
+- RDFLib
+- RDF
+- RDFS
+- SKOS
+- OWL
+- SPARQL
+- Turtle
+- BoardGameGeek XML API
 
 ---
 
-# SKOS
+## Running the Project
 
-Für die Modellierung von Spielmechaniken wird **SKOS – Simple Knowledge Organization System** verwendet.
-
-Eine Mechanik wird dabei als:
-
-```turtle
-rdf:type skos:Concept
-```
-
-definiert.
-
-Beispiel:
-
-```turtle
-mechanic:set-collection
-    rdf:type skos:Concept ;
-    skos:prefLabel "Set Collection"@en ;
-    skos:prefLabel "Set-Sammlung"@de .
-```
-
-Die Ressource
-
-```text
-https://boardgames.example/mechanic/set-collection
-```
-
-repräsentiert das eigentliche Concept.
-
-Die Bezeichnungen `"Set Collection"` und `"Set-Sammlung"` sind lediglich sprachabhängige Labels dieses Concepts.
-
-Dadurch kann dieselbe Ressource unterschiedliche Bezeichnungen besitzen, ohne ihre Identität zu verändern.
-
----
-
-## SKOS Concept Scheme
-
-Die Spielmechaniken gehören zu einem gemeinsamen `skos:ConceptScheme`:
-
-```turtle
-scheme:board-game-mechanics
-    rdf:type skos:ConceptScheme ;
-    skos:prefLabel "Board Game Mechanics"@en ;
-    skos:prefLabel "Brettspielmechaniken"@de .
-```
-
-Eine Mechanik wird über:
-
-```turtle
-skos:inScheme scheme:board-game-mechanics
-```
-
-diesem Schema zugeordnet.
-
----
-
-## SKOS Labels
-
-Für die Beschreibung eines Concepts werden unterschiedliche Label-Typen verwendet.
-
-### `skos:prefLabel`
-
-Bevorzugte Bezeichnung:
-
-```turtle
-skos:prefLabel "Set Collection"@en ;
-skos:prefLabel "Set-Sammlung"@de ;
-```
-
-Durch die Language Tags `@en` und `@de` können unterschiedliche Sprachen unterschieden werden.
-
-### `skos:altLabel`
-
-Alternative Bezeichnung:
-
-```turtle
-skos:altLabel "Set Collecting"@en ;
-```
-
-Alternative Labels können beispielsweise für Suche oder Autovervollständigung verwendet werden.
-
-### `skos:hiddenLabel`
-
-Versteckte Bezeichnung:
-
-```turtle
-skos:hiddenLabel "SetCollection"@en ;
-```
-
-Ein `hiddenLabel` kann beispielsweise für alternative Schreibweisen oder Suchbegriffe verwendet werden, die dem Benutzer normalerweise nicht als Bezeichnung angezeigt werden sollen.
-
----
-
-# Beziehungen zwischen SKOS Concepts
-
-SKOS ermöglicht es, Beziehungen zwischen Concepts zu modellieren.
-
-## `skos:broader`
-
-`skos:broader` beschreibt einen allgemeineren Begriff.
-
-```turtle
-mechanic:set-collection
-    skos:broader mechanic:card-mechanics .
-```
-
-Damit entsteht:
-
-```text
-Set Collection
-      │
-      │ broader
-      ↓
-Card Mechanics
-```
-
-`Set Collection` ist also ein spezifischerer Begriff innerhalb der allgemeineren Kategorie `Card Mechanics`.
-
----
-
-## `skos:related`
-
-`skos:related` beschreibt eine nicht-hierarchische Beziehung zwischen zwei Concepts.
-
-```turtle
-mechanic:set-collection
-    skos:related mechanic:hand-management .
-```
-
-Damit wird ausgedrückt, dass die beiden Spielmechaniken miteinander in Beziehung stehen, ohne dass eine davon Ober- oder Unterbegriff der anderen sein muss.
-
----
-
-# main.py
-
-Die Datei `main.py` verwendet die Python-Bibliothek **RDFLib**, um die Turtle-Datei einzulesen und den darin enthaltenen RDF-Graphen zu untersuchen.
-
-Installation:
+Create and activate a virtual environment:
 
 ```bash
-pip install rdflib
+python -m venv .venv
+source .venv/bin/activate
 ```
 
----
+Install the required dependencies.
 
-## RDF-Graph laden
+Then start the Flask application:
 
-Zunächst wird ein Graph erzeugt:
-
-```python
-from rdflib import Graph
-
-graph = Graph()
+```bash
+python app.py
 ```
 
-Anschließend wird die Turtle-Datei eingelesen:
-
-```python
-graph.parse("boardgames.ttl", format="turtle")
-```
-
-RDFLib parst die Turtle-Syntax und erzeugt daraus einen RDF-Graphen.
-
-Die Anzahl der enthaltenen Tripel kann anschließend ausgegeben werden:
-
-```python
-print(f"Anzahl der Tripel: {len(graph)}")
-```
-
-Der aktuelle Graph enthält:
+The development server is available at:
 
 ```text
-36 Tripel
+http://127.0.0.1:5000
 ```
 
 ---
 
-## Alle Tripel anzeigen
+## Current Status
 
-Ein RDF-Graph kann direkt durchlaufen werden:
+The project is under active development and primarily serves as a learning environment.
 
-```python
-for subject, predicate, object_ in graph:
-    print(f"SUBJECT:   {subject}")
-    print(f"PREDICATE: {predicate}")
-    print(f"OBJECT:    {object_}")
-```
+Currently implemented:
 
-RDFLib liefert dabei immer die drei Bestandteile eines RDF-Tripels:
-
-```text
-Subject
-Predicate
-Object
-```
-
-Beispielsweise:
-
-```text
-SUBJECT:
-https://boardgames.example/game/auf-nach-japan
-
-PREDICATE:
-https://boardgames.example/property/author
-
-OBJECT:
-https://boardgames.example/person/josh-wood
-```
-
-Die kompakte Turtle-Schreibweise wurde beim Parsen also wieder in einzelne RDF-Tripel aufgelöst.
+- BGG ranking data import
+- BGG XML API integration
+- conversion of board game data into RDF
+- RDF resources for games, people and publishers
+- SKOS concepts for mechanics
+- SKOS concepts for categories
+- separate SKOS concept schemes
+- Turtle serialization
+- SPARQL queries with RDFLib
+- Flask web application
+- board game detail pages
+- mechanic detail pages
+- category detail pages
+- navigation between games and SKOS concepts
 
 ---
 
-# Namespaces in Python
+## Planned Next Steps
 
-Auch RDFLib unterstützt Namespaces.
+Possible next steps include:
 
-Beispielsweise:
-
-```python
-from rdflib import Namespace
-
-GAME = Namespace("https://boardgames.example/game/")
-PROP = Namespace("https://boardgames.example/property/")
-```
-
-Anschließend kann:
-
-```python
-GAME["auf-nach-japan"]
-```
-
-verwendet werden.
-
-Das repräsentiert die vollständige IRI:
-
-```text
-https://boardgames.example/game/auf-nach-japan
-```
+- designer resource pages
+- publisher resource pages
+- improved HTML templates
+- reusable template components
+- additional SPARQL queries
+- SKOS relationships such as `skos:broader`, `skos:narrower` and `skos:related`
+- improved language handling for SKOS labels
+- generic RDF resource handling
+- comparison of the implementation with VIVO/Vitro concepts and templates
 
 ---
 
-# Informationen aus dem Graphen lesen
+## Disclaimer
 
-Mit RDFLib kann gezielt nach Tripeln gesucht werden.
+This is an educational project and is not affiliated with BoardGameGeek.
 
-Beispielsweise können alle Autoren eines Spiels ermittelt werden:
-
-```python
-game = GAME["auf-nach-japan"]
-
-for author in graph.objects(game, PROP.author):
-    print(author)
-```
-
-Die Anfrage entspricht konzeptionell:
-
-```text
-SUBJECT:   Auf nach Japan!
-PREDICATE: author
-OBJECT:    ?
-```
-
-RDFLib sucht also alle Objekte, die über das Prädikat `author` mit dem Spiel verbunden sind.
-
-Das Ergebnis sind die Ressourcen:
-
-```text
-https://boardgames.example/person/josh-wood
-https://boardgames.example/person/mark-wootton
-```
-
----
-
-# Labels von Ressourcen ermitteln
-
-Eine IRI ist für Maschinen geeignet, für Benutzer soll jedoch normalerweise eine lesbare Bezeichnung dargestellt werden.
-
-Die Autoren besitzen deshalb ein `rdfs:label`.
-
-Mit:
-
-```python
-from rdflib.namespace import RDFS
-```
-
-kann dieses Label abgefragt werden:
-
-```python
-for author in graph.objects(game, PROP.author):
-    label = graph.value(author, RDFS.label)
-    print(label)
-```
-
-Das Ergebnis lautet:
-
-```text
-Josh Wood
-Mark Wootton
-```
-
-Die Anwendung navigiert dabei durch den RDF-Graphen:
-
-```text
-Auf nach Japan!
-      │
-      │ author
-      ↓
-   Josh Wood
-      │
-      │ rdfs:label
-      ↓
-  "Josh Wood"
-```
-
----
-
-# SKOS mit RDFLib auslesen
-
-RDFLib stellt auch die SKOS-Vokabel bereit:
-
-```python
-from rdflib.namespace import SKOS
-```
-
-Ein bestimmtes Concept kann beispielsweise so ausgewählt werden:
-
-```python
-MECHANIC = Namespace("https://boardgames.example/mechanic/")
-
-concept = MECHANIC["set-collection"]
-```
-
----
-
-## Preferred Labels
-
-Alle bevorzugten Labels können mit:
-
-```python
-for label in graph.objects(concept, SKOS.prefLabel):
-    print(label)
-```
-
-ausgelesen werden.
-
-Da RDF-Literale ihre Sprachinformation behalten, kann auch auf die Sprache zugegriffen werden:
-
-```python
-for label in graph.objects(concept, SKOS.prefLabel):
-    print(f"Text: {label}")
-    print(f"Sprache: {label.language}")
-```
-
-Damit kann beispielsweise gezielt das deutsche Label ausgewählt werden:
-
-```python
-for label in graph.objects(concept, SKOS.prefLabel):
-    if label.language == "de":
-        print(label)
-```
-
----
-
-## Übergeordnete Concepts
-
-Die `skos:broader`-Beziehung kann ebenfalls aus dem Graphen gelesen werden:
-
-```python
-broader = graph.value(concept, SKOS.broader)
-```
-
-Dadurch erhält man zunächst die IRI des übergeordneten Concepts.
-
-Anschließend kann dessen deutsches Label gesucht werden:
-
-```python
-for label in graph.objects(broader, SKOS.prefLabel):
-    if label.language == "de":
-        print(label)
-```
-
-Die Anwendung navigiert dabei über mehrere Beziehungen:
-
-```text
-Set Collection
-      │
-      │ skos:broader
-      ↓
-Card Mechanics
-      │
-      │ skos:prefLabel @de
-      ↓
-"Kartenmechaniken"
-```
-
----
-
-## Verwandte Concepts
-
-Dasselbe Prinzip kann für `skos:related` verwendet werden:
-
-```python
-for related in graph.objects(concept, SKOS.related):
-    for label in graph.objects(related, SKOS.prefLabel):
-        if label.language == "de":
-            print(label)
-```
-
-Dadurch kann beispielsweise das verwandte Concept `Hand Management` gefunden und dessen deutsches Label ausgegeben werden.
-
----
-
-# Zentrale Idee des Projekts
-
-Die Informationen werden nicht in Python fest einprogrammiert.
-
-Python enthält beispielsweise nicht:
-
-```python
-author = "Josh Wood"
-broader = "Kartenmechaniken"
-related = "Handkarten-Management"
-```
-
-Stattdessen befinden sich die Informationen und Beziehungen im **RDF-Graphen**.
-
-Python kennt lediglich die Struktur beziehungsweise die Vokabulare und fragt den Graphen ab:
-
-```text
-Ressource
-   │
-   ├── Predicate → Ressource
-   │                  │
-   │                  └── Predicate → Literal
-   │
-   └── Predicate → Literal
-```
-
-Dadurch entsteht ein Netzwerk miteinander verbundener Ressourcen.
-
-Genau dieses Prinzip bildet die Grundlage von **Linked Data**.
-
----
-
-# Nächste Schritte
-
-Im weiteren Verlauf soll das Projekt um folgende Themen erweitert werden:
-
-- Abfragen mit **SPARQL**
-- weitere Brettspiele
-- weitere SKOS Concepts
-- hierarchische Beziehungen mit `skos:broader` und `skos:narrower`
-- Navigation durch den RDF-Graphen
-- Darstellung einzelner SKOS Concepts
-- Aufbau einer kleinen Python-Webanwendung
-- Darstellung von Beziehungen zwischen Brettspielen, Personen, Verlagen und Spielmechaniken
-
-Das Projekt dient dabei bewusst als überschaubares Lernmodell für größere Linked-Data-Anwendungen.
+BoardGameGeek data is used as a practical dataset for learning RDF, Linked Data, SKOS and SPARQL.

@@ -1,0 +1,86 @@
+@prefix bg: <https://boardgames.example/> .
+@prefix prop: <https://boardgames.example/property/> .
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
+# ---------------------------------------------------------
+# Classes
+# ---------------------------------------------------------
+
+bg:BoardGame
+    rdf:type owl:Class ;
+    rdfs:label "Board Game"@en ;
+    rdfs:label "Brettspiel"@de .
+
+bg:Person
+    rdf:type owl:Class ;
+    rdfs:label "Person"@en ;
+    rdfs:label "Person"@de .
+
+bg:Publisher
+    rdf:type owl:Class ;
+    rdfs:label "Publisher"@en ;
+    rdfs:label "Verlag"@de .
+
+
+# ---------------------------------------------------------
+# Object Properties
+# ---------------------------------------------------------
+
+prop:author
+    rdf:type owl:ObjectProperty ;
+    rdfs:label "author"@en ;
+    rdfs:label "Autor"@de ;
+    rdfs:domain bg:BoardGame ;
+    rdfs:range bg:Person .
+
+prop:publisher
+    rdf:type owl:ObjectProperty ;
+    rdfs:label "publisher"@en ;
+    rdfs:label "Verlag"@de ;
+    rdfs:domain bg:BoardGame ;
+    rdfs:range bg:Publisher .
+
+prop:mechanic
+    rdf:type owl:ObjectProperty ;
+    rdfs:label "mechanic"@en ;
+    rdfs:label "Mechanik"@de ;
+    rdfs:domain bg:BoardGame ;
+    rdfs:range skos:Concept .
+
+prop:category
+    rdf:type owl:ObjectProperty ;
+    rdfs:label "category"@en ;
+    rdfs:label "Kategorie"@de ;
+    rdfs:domain bg:BoardGame ;
+    rdfs:range skos:Concept .
+
+# ---------------------------------------------------------
+# Datatype Properties
+# ---------------------------------------------------------
+
+prop:yearOfPublication
+    rdf:type owl:DatatypeProperty ;
+    rdfs:label "year of publication"@en ;
+    rdfs:label "Erscheinungsjahr"@de ;
+    rdfs:domain bg:BoardGame ;
+    rdfs:range xsd:integer .
+
+prop:minPlayer
+    rdf:type owl:DatatypeProperty ;
+    rdfs:label "minimum players"@en ;
+    rdfs:label "Minimale Spielerzahl"@de ;
+    rdfs:domain bg:BoardGame ;
+    rdfs:range xsd:integer .
+
+prop:maxPlayer
+    rdf:type owl:DatatypeProperty ;
+    rdfs:label "maximum players"@en ;
+    rdfs:label "Maximale Spielerzahl"@de ;
+    rdfs:domain bg:BoardGame ;
+    rdfs:range xsd:integer .

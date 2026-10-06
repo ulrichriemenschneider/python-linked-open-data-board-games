@@ -1,9 +1,15 @@
 from rdflib import Graph, Namespace
 from rdflib.namespace import RDFS, SKOS
+from utils import get_concept
+from pprint import pprint
 
 graph = Graph()
 
-graph.parse("boardgames.ttl", format="turtle")
+graph.parse("data/ontology.ttl", format="turtle")
+graph.parse("data/mechanics.ttl", format="turtle")
+graph.parse("data/boardgames.ttl", format="turtle")
+
+MECHANIC = Namespace("https://boardgames.example/mechanic/")
 
 print(f"Anzahl der Tripel: {len(graph)}")
 
@@ -187,3 +193,26 @@ for row in results:
     print(f"{row.gameLabel}: {row.mechanicLabel}")
 
 print("-------------")
+
+query = """
+PREFIX mechanic: <https://boardgames.example/mechanic/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+SELECT ?narrower ?label
+WHERE {
+    ?narrower skos:broader mechanic:hand-management .
+    ?narrower skos:prefLabel ?label .
+
+    FILTER(LANG(?label) = "de")
+}
+"""
+
+results = graph.query(query)
+
+for row in results:
+    print(f"Unterbegriff: {row.label}")
+
+print("-------------")
+
+concept_data = get_concept("set-collection", graph)
+pprint(concept_data)

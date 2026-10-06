@@ -1,0 +1,1169 @@
+@prefix bg: <https://boardgames.example/> .
+@prefix category: <https://boardgames.example/category/> .
+@prefix game: <https://boardgames.example/game/> .
+@prefix mechanic: <https://boardgames.example/mechanic/> .
+@prefix person: <https://boardgames.example/person/> .
+@prefix prop: <https://boardgames.example/property/> .
+@prefix publisher: <https://boardgames.example/publisher/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix scheme: <https://boardgames.example/scheme/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+game:115746 a bg:BoardGame ;
+    rdfs:label "War of the Ring: Second Edition" ;
+    prop:author person:3247,
+        person:934,
+        person:935 ;
+    prop:category category:1010,
+        category:1019,
+        category:1086,
+        category:1093 ;
+    prop:maxPlayer 4 ;
+    prop:mechanic mechanic:2015,
+        mechanic:2018,
+        mechanic:2019,
+        mechanic:2040,
+        mechanic:2046,
+        mechanic:2072,
+        mechanic:2080,
+        mechanic:2850,
+        mechanic:2857,
+        mechanic:2897,
+        mechanic:2947 ;
+    prop:minPlayer 2 ;
+    prop:publisher publisher:14346,
+        publisher:15906,
+        publisher:17917,
+        publisher:21053,
+        publisher:2366,
+        publisher:24844,
+        publisher:264,
+        publisher:29194,
+        publisher:35809,
+        publisher:36,
+        publisher:38809,
+        publisher:4617,
+        publisher:58739,
+        publisher:6123 ;
+    prop:yearOfPublication 2011 .
+
+game:161936 a bg:BoardGame ;
+    rdfs:label "Pandemic Legacy: Season 1" ;
+    prop:author person:378,
+        person:442 ;
+    prop:category category:1084,
+        category:2145 ;
+    prop:maxPlayer 4 ;
+    prop:mechanic mechanic:2001,
+        mechanic:2004,
+        mechanic:2008,
+        mechanic:2015,
+        mechanic:2023,
+        mechanic:2040,
+        mechanic:2078,
+        mechanic:2822,
+        mechanic:2824,
+        mechanic:3099,
+        mechanic:3100 ;
+    prop:minPlayer 2 ;
+    prop:publisher publisher:1391,
+        publisher:15889,
+        publisher:15983,
+        publisher:2366,
+        publisher:44209,
+        publisher:538,
+        publisher:5657,
+        publisher:5812,
+        publisher:7992,
+        publisher:8291,
+        publisher:8820,
+        publisher:9325 ;
+    prop:yearOfPublication 2015 .
+
+game:167791 a bg:BoardGame ;
+    rdfs:label "Terraforming Mars" ;
+    prop:author person:52075 ;
+    prop:category category:1015,
+        category:1016,
+        category:1021,
+        category:1084,
+        category:1086,
+        category:1088,
+        category:1113 ;
+    prop:maxPlayer 5 ;
+    prop:mechanic mechanic:2002,
+        mechanic:2015,
+        mechanic:2026,
+        mechanic:2040,
+        mechanic:2686,
+        mechanic:2819,
+        mechanic:2828,
+        mechanic:2875,
+        mechanic:2897,
+        mechanic:2902,
+        mechanic:2912,
+        mechanic:2984,
+        mechanic:3100 ;
+    prop:minPlayer 1 ;
+    prop:publisher publisher:11652,
+        publisher:18575,
+        publisher:22560,
+        publisher:22763,
+        publisher:23756,
+        publisher:24844,
+        publisher:25203,
+        publisher:30677,
+        publisher:3218,
+        publisher:32395,
+        publisher:32591,
+        publisher:32866,
+        publisher:33998,
+        publisher:3475,
+        publisher:34801,
+        publisher:36563,
+        publisher:36763,
+        publisher:46884,
+        publisher:46980,
+        publisher:4785,
+        publisher:51614,
+        publisher:5380,
+        publisher:6214,
+        publisher:7466,
+        publisher:7992,
+        publisher:8291 ;
+    prop:yearOfPublication 2016 .
+
+game:174430 a bg:BoardGame ;
+    rdfs:label "Gloomhaven" ;
+    prop:author person:69802 ;
+    prop:category category:1010,
+        category:1020,
+        category:1022,
+        category:1046,
+        category:1047 ;
+    prop:maxPlayer 4 ;
+    prop:mechanic mechanic:2011,
+        mechanic:2015,
+        mechanic:2018,
+        mechanic:2020,
+        mechanic:2023,
+        mechanic:2026,
+        mechanic:2027,
+        mechanic:2028,
+        mechanic:2040,
+        mechanic:2676,
+        mechanic:2685,
+        mechanic:2689,
+        mechanic:2819,
+        mechanic:2822,
+        mechanic:2824,
+        mechanic:2839,
+        mechanic:2846,
+        mechanic:2851,
+        mechanic:2854,
+        mechanic:2857,
+        mechanic:2893,
+        mechanic:2947,
+        mechanic:2965,
+        mechanic:2975,
+        mechanic:3004,
+        mechanic:3099,
+        mechanic:3100 ;
+    prop:minPlayer 1 ;
+    prop:publisher publisher:15605,
+        publisher:18852,
+        publisher:22380,
+        publisher:23756,
+        publisher:27425,
+        publisher:3475,
+        publisher:40478,
+        publisher:4304,
+        publisher:46179,
+        publisher:8291,
+        publisher:8820 ;
+    prop:yearOfPublication 2017 .
+
+game:187645 a bg:BoardGame ;
+    rdfs:label "Star Wars: Rebellion" ;
+    prop:author person:6651 ;
+    prop:category category:1016,
+        category:1019,
+        category:1064,
+        category:1102,
+        category:1113 ;
+    prop:maxPlayer 4 ;
+    prop:mechanic mechanic:2015,
+        mechanic:2019,
+        mechanic:2040,
+        mechanic:2046,
+        mechanic:2072,
+        mechanic:2080,
+        mechanic:2686,
+        mechanic:2846,
+        mechanic:2850,
+        mechanic:2856,
+        mechanic:2857,
+        mechanic:2897,
+        mechanic:2901,
+        mechanic:2902,
+        mechanic:2912,
+        mechanic:2933,
+        mechanic:2967,
+        mechanic:3100 ;
+    prop:minPlayer 2 ;
+    prop:publisher publisher:15605,
+        publisher:15889,
+        publisher:17,
+        publisher:18852,
+        publisher:23043,
+        publisher:264,
+        publisher:28826,
+        publisher:2973,
+        publisher:4617,
+        publisher:58739,
+        publisher:6194,
+        publisher:8291 ;
+    prop:yearOfPublication 2016 .
+
+game:224517 a bg:BoardGame ;
+    rdfs:label "Brass: Birmingham" ;
+    prop:author person:32887,
+        person:32943,
+        person:6 ;
+    prop:category category:1011,
+        category:1021,
+        category:1034,
+        category:1088,
+        category:2710,
+        category:2726 ;
+    prop:maxPlayer 4 ;
+    prop:mechanic mechanic:2001,
+        mechanic:2002,
+        mechanic:2040,
+        mechanic:2081,
+        mechanic:2826,
+        mechanic:2849,
+        mechanic:2875,
+        mechanic:2897,
+        mechanic:2900,
+        mechanic:2902,
+        mechanic:2904,
+        mechanic:2911,
+        mechanic:2956,
+        mechanic:3099,
+        mechanic:3100 ;
+    prop:minPlayer 2 ;
+    prop:publisher publisher:11043,
+        publisher:21608,
+        publisher:21765,
+        publisher:25074,
+        publisher:30677,
+        publisher:31071,
+        publisher:34522,
+        publisher:3475,
+        publisher:36186,
+        publisher:36210,
+        publisher:41423,
+        publisher:42147,
+        publisher:44580,
+        publisher:46500,
+        publisher:4785,
+        publisher:4932,
+        publisher:50696,
+        publisher:7466,
+        publisher:8820,
+        publisher:8832 ;
+    prop:yearOfPublication 2018 .
+
+game:233078 a bg:BoardGame ;
+    rdfs:label "Twilight Imperium: Fourth Edition" ;
+    prop:author person:21,
+        person:6651,
+        person:96049 ;
+    prop:category category:1001,
+        category:1015,
+        category:1016,
+        category:1019,
+        category:1020,
+        category:1021,
+        category:1026,
+        category:1086,
+        category:1113 ;
+    prop:maxPlayer 6 ;
+    prop:mechanic mechanic:2008,
+        mechanic:2011,
+        mechanic:2015,
+        mechanic:2017,
+        mechanic:2021,
+        mechanic:2026,
+        mechanic:2072,
+        mechanic:2079,
+        mechanic:2676,
+        mechanic:2685,
+        mechanic:2838,
+        mechanic:2843,
+        mechanic:2849,
+        mechanic:2876,
+        mechanic:2886,
+        mechanic:2897,
+        mechanic:2914,
+        mechanic:2947 ;
+    prop:minPlayer 3 ;
+    prop:publisher publisher:15605,
+        publisher:15889,
+        publisher:17,
+        publisher:18852,
+        publisher:23043,
+        publisher:2973,
+        publisher:34744,
+        publisher:3475,
+        publisher:39249,
+        publisher:4617,
+        publisher:58739,
+        publisher:6194 ;
+    prop:yearOfPublication 2017 .
+
+game:316554 a bg:BoardGame ;
+    rdfs:label "Dune: Imperium" ;
+    prop:author person:92370 ;
+    prop:category category:1001,
+        category:1016,
+        category:1064,
+        category:1093 ;
+    prop:maxPlayer 4 ;
+    prop:mechanic mechanic:2015,
+        mechanic:2041,
+        mechanic:2082,
+        mechanic:2664,
+        mechanic:2686,
+        mechanic:2819,
+        mechanic:2828,
+        mechanic:2857,
+        mechanic:2864,
+        mechanic:2876,
+        mechanic:2901,
+        mechanic:2911,
+        mechanic:2914,
+        mechanic:3099,
+        mechanic:3100 ;
+    prop:minPlayer 1 ;
+    prop:publisher publisher:15605,
+        publisher:21053,
+        publisher:29412,
+        publisher:33626,
+        publisher:33706,
+        publisher:3475,
+        publisher:34801,
+        publisher:36563,
+        publisher:39249,
+        publisher:48648,
+        publisher:51614,
+        publisher:55404,
+        publisher:58739,
+        publisher:6214,
+        publisher:9068 ;
+    prop:yearOfPublication 2020 .
+
+game:342942 a bg:BoardGame ;
+    rdfs:label "Ark Nova" ;
+    prop:author person:138517 ;
+    prop:category category:1002,
+        category:1084,
+        category:1089 ;
+    prop:maxPlayer 4 ;
+    prop:mechanic mechanic:2002,
+        mechanic:2004,
+        mechanic:2015,
+        mechanic:2026,
+        mechanic:2040,
+        mechanic:2041,
+        mechanic:2819,
+        mechanic:2850,
+        mechanic:2875,
+        mechanic:2876,
+        mechanic:2897,
+        mechanic:2902,
+        mechanic:2912,
+        mechanic:2914,
+        mechanic:2939,
+        mechanic:2978,
+        mechanic:3100,
+        mechanic:3139 ;
+    prop:minPlayer 1 ;
+    prop:publisher publisher:10768,
+        publisher:12540,
+        publisher:17179,
+        publisher:21608,
+        publisher:22380,
+        publisher:22609,
+        publisher:2726,
+        publisher:29242,
+        publisher:29409,
+        publisher:30677,
+        publisher:30958,
+        publisher:3218,
+        publisher:39774,
+        publisher:42325,
+        publisher:44241,
+        publisher:4932,
+        publisher:51614,
+        publisher:7992,
+        publisher:8291,
+        publisher:8820 ;
+    prop:yearOfPublication 2021 .
+
+game:397598 a bg:BoardGame ;
+    rdfs:label "Dune: Imperium – Uprising" ;
+    prop:author person:92370 ;
+    prop:category category:1016,
+        category:1064,
+        category:1093 ;
+    prop:maxPlayer 6 ;
+    prop:mechanic mechanic:2015,
+        mechanic:2019,
+        mechanic:2041,
+        mechanic:2082,
+        mechanic:2664,
+        mechanic:2819,
+        mechanic:2828,
+        mechanic:2857,
+        mechanic:2864,
+        mechanic:2901,
+        mechanic:2903,
+        mechanic:2912,
+        mechanic:2914,
+        mechanic:3099,
+        mechanic:3100 ;
+    prop:minPlayer 1 ;
+    prop:publisher publisher:15605,
+        publisher:21053,
+        publisher:33626,
+        publisher:33706,
+        publisher:3475,
+        publisher:34801,
+        publisher:36563,
+        publisher:44241,
+        publisher:55404,
+        publisher:58739,
+        publisher:8291,
+        publisher:9068 ;
+    prop:yearOfPublication 2023 .
+
+category:1002 a skos:Concept ;
+    skos:inScheme scheme:bgg-categories ;
+    skos:prefLabel "Card Game"@en .
+
+category:1011 a skos:Concept ;
+    skos:inScheme scheme:bgg-categories ;
+    skos:prefLabel "Transportation"@en .
+
+category:1022 a skos:Concept ;
+    skos:inScheme scheme:bgg-categories ;
+    skos:prefLabel "Adventure"@en .
+
+category:1026 a skos:Concept ;
+    skos:inScheme scheme:bgg-categories ;
+    skos:prefLabel "Negotiation"@en .
+
+category:1034 a skos:Concept ;
+    skos:inScheme scheme:bgg-categories ;
+    skos:prefLabel "Trains"@en .
+
+category:1046 a skos:Concept ;
+    skos:inScheme scheme:bgg-categories ;
+    skos:prefLabel "Fighting"@en .
+
+category:1047 a skos:Concept ;
+    skos:inScheme scheme:bgg-categories ;
+    skos:prefLabel "Miniatures"@en .
+
+category:1089 a skos:Concept ;
+    skos:inScheme scheme:bgg-categories ;
+    skos:prefLabel "Animals"@en .
+
+category:1102 a skos:Concept ;
+    skos:inScheme scheme:bgg-categories ;
+    skos:prefLabel "Civil War"@en .
+
+category:2145 a skos:Concept ;
+    skos:inScheme scheme:bgg-categories ;
+    skos:prefLabel "Medical"@en .
+
+category:2710 a skos:Concept ;
+    skos:inScheme scheme:bgg-categories ;
+    skos:prefLabel "Post-Napoleonic"@en .
+
+category:2726 a skos:Concept ;
+    skos:inScheme scheme:bgg-categories ;
+    skos:prefLabel "Age of Reason"@en .
+
+mechanic:2017 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Voting"@en .
+
+mechanic:2020 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Simultaneous Action Selection"@en .
+
+mechanic:2021 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Area-Impulse"@en .
+
+mechanic:2027 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Storytelling"@en .
+
+mechanic:2028 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Role Playing"@en .
+
+mechanic:2078 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Point to Point Movement"@en .
+
+mechanic:2079 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Variable Phase Order"@en .
+
+mechanic:2081 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Network and Route Building"@en .
+
+mechanic:2689 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Action Queue"@en .
+
+mechanic:2826 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Turn Order: Stat-Based"@en .
+
+mechanic:2838 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Action Drafting"@en .
+
+mechanic:2839 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Action Retrieval"@en .
+
+mechanic:2843 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Follow"@en .
+
+mechanic:2851 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Narrative Choice / Paragraph"@en .
+
+mechanic:2854 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Critical Hits and Failures"@en .
+
+mechanic:2856 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Die Icon Resolution"@en .
+
+mechanic:2886 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "King of the Hill"@en .
+
+mechanic:2893 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Communication Limits"@en .
+
+mechanic:2900 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Market"@en .
+
+mechanic:2903 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Automatic Resource Growth"@en .
+
+mechanic:2904 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Loans"@en .
+
+mechanic:2933 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Worker Placement, Different Worker Types"@en .
+
+mechanic:2939 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Track Movement"@en .
+
+mechanic:2956 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Chaining"@en .
+
+mechanic:2965 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Multiple Maps"@en .
+
+mechanic:2967 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Hidden Movement"@en .
+
+mechanic:2975 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Line of Sight"@en .
+
+mechanic:2978 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Grid Coverage"@en .
+
+mechanic:2984 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Closed Drafting"@en .
+
+mechanic:3004 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Deck Construction"@en .
+
+mechanic:3139 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Expiring Actions"@en .
+
+person:138517 a bg:Person ;
+    rdfs:label "Mathias Wigge" .
+
+person:21 a bg:Person ;
+    rdfs:label "Christian T. Petersen" .
+
+person:3247 a bg:Person ;
+    rdfs:label "Roberto Di Meglio" .
+
+person:32887 a bg:Person ;
+    rdfs:label "Gavan Brown" .
+
+person:32943 a bg:Person ;
+    rdfs:label "Matt Tolman" .
+
+person:378 a bg:Person ;
+    rdfs:label "Matt Leacock" .
+
+person:442 a bg:Person ;
+    rdfs:label "Rob Daviau" .
+
+person:52075 a bg:Person ;
+    rdfs:label "Jacob Fryxelius" .
+
+person:6 a bg:Person ;
+    rdfs:label "Martin Wallace" .
+
+person:69802 a bg:Person ;
+    rdfs:label "Isaac Childres" .
+
+person:934 a bg:Person ;
+    rdfs:label "Marco Maggi" .
+
+person:935 a bg:Person ;
+    rdfs:label "Francesco Nepitello" .
+
+person:96049 a bg:Person ;
+    rdfs:label "Dane Beltrami" .
+
+publisher:10768 a bg:Publisher ;
+    rdfs:label "Cranio Creations" .
+
+publisher:11043 a bg:Publisher ;
+    rdfs:label "Conclave Editora" .
+
+publisher:11652 a bg:Publisher ;
+    rdfs:label "Stronghold Games" .
+
+publisher:12540 a bg:Publisher ;
+    rdfs:label "Game Harbor" .
+
+publisher:1391 a bg:Publisher ;
+    rdfs:label "Hobby Japan" .
+
+publisher:14346 a bg:Publisher ;
+    rdfs:label "Planplay" .
+
+publisher:15906 a bg:Publisher ;
+    rdfs:label "Nuts! Publishing" .
+
+publisher:15983 a bg:Publisher ;
+    rdfs:label "Jolly Thinkers" .
+
+publisher:17179 a bg:Publisher ;
+    rdfs:label "IGAMES" .
+
+publisher:17917 a bg:Publisher ;
+    rdfs:label "Ares Games" .
+
+publisher:18575 a bg:Publisher ;
+    rdfs:label "FryxGames" .
+
+publisher:21765 a bg:Publisher ;
+    rdfs:label "Roxley" .
+
+publisher:22560 a bg:Publisher ;
+    rdfs:label "Fantasmagoria" .
+
+publisher:22609 a bg:Publisher ;
+    rdfs:label "テンデイズゲームズ (TendaysGames)" .
+
+publisher:22763 a bg:Publisher ;
+    rdfs:label "Golden Egg Games" .
+
+publisher:25074 a bg:Publisher ;
+    rdfs:label "BoardM Factory" .
+
+publisher:25203 a bg:Publisher ;
+    rdfs:label "Lex Games" .
+
+publisher:2726 a bg:Publisher ;
+    rdfs:label "Portal Games" .
+
+publisher:27425 a bg:Publisher ;
+    rdfs:label "Cephalofair Games" .
+
+publisher:28826 a bg:Publisher ;
+    rdfs:label "Rooster Games" .
+
+publisher:29194 a bg:Publisher ;
+    rdfs:label "GaGa Games" .
+
+publisher:29242 a bg:Publisher ;
+    rdfs:label "Ludofy Creative" .
+
+publisher:29409 a bg:Publisher ;
+    rdfs:label "Super Meeple" .
+
+publisher:29412 a bg:Publisher ;
+    rdfs:label "Awaken Realms" .
+
+publisher:30958 a bg:Publisher ;
+    rdfs:label "Capstone Games" .
+
+publisher:31071 a bg:Publisher ;
+    rdfs:label "Dexker Games" .
+
+publisher:32395 a bg:Publisher ;
+    rdfs:label "NeoTroy Games" .
+
+publisher:32591 a bg:Publisher ;
+    rdfs:label "MeepleBR" .
+
+publisher:32866 a bg:Publisher ;
+    rdfs:label "Kilogames" .
+
+publisher:33998 a bg:Publisher ;
+    rdfs:label "Siam Board Games" .
+
+publisher:34522 a bg:Publisher ;
+    rdfs:label "CrowD Games" .
+
+publisher:34744 a bg:Publisher ;
+    rdfs:label "Playfun Games" .
+
+publisher:35809 a bg:Publisher ;
+    rdfs:label "Zhiyanjia" .
+
+publisher:36 a bg:Publisher ;
+    rdfs:label "Sophisticated Games" .
+
+publisher:36186 a bg:Publisher ;
+    rdfs:label "PHALANX" .
+
+publisher:36210 a bg:Publisher ;
+    rdfs:label "Lanlalen" .
+
+publisher:36763 a bg:Publisher ;
+    rdfs:label "Surfin' Meeple China" .
+
+publisher:38809 a bg:Publisher ;
+    rdfs:label "Angry Lion Games" .
+
+publisher:39774 a bg:Publisher ;
+    rdfs:label "Tower Tactic Games" .
+
+publisher:40478 a bg:Publisher ;
+    rdfs:label "Games Warehouse" .
+
+publisher:41423 a bg:Publisher ;
+    rdfs:label "TLAMA games" .
+
+publisher:42147 a bg:Publisher ;
+    rdfs:label "Giant Roc" .
+
+publisher:42325 a bg:Publisher ;
+    rdfs:label "Grok Games" .
+
+publisher:4304 a bg:Publisher ;
+    rdfs:label "Albi" .
+
+publisher:44209 a bg:Publisher ;
+    rdfs:label "Ігромаг" .
+
+publisher:44580 a bg:Publisher ;
+    rdfs:label "Board Game Rookie" .
+
+publisher:46179 a bg:Publisher ;
+    rdfs:label "Albi Polska" .
+
+publisher:46500 a bg:Publisher ;
+    rdfs:label "Lord of Boards" .
+
+publisher:46884 a bg:Publisher ;
+    rdfs:label "Green Elephant Games" .
+
+publisher:46980 a bg:Publisher ;
+    rdfs:label "Brädspel.se" .
+
+publisher:48648 a bg:Publisher ;
+    rdfs:label "YingDi (旅法师营地)" .
+
+publisher:50696 a bg:Publisher ;
+    rdfs:label "CoolPlay" .
+
+publisher:538 a bg:Publisher ;
+    rdfs:label "Z-Man Games" .
+
+publisher:5380 a bg:Publisher ;
+    rdfs:label "Intrafin Games" .
+
+publisher:5657 a bg:Publisher ;
+    rdfs:label "Filosofia Éditions" .
+
+publisher:5812 a bg:Publisher ;
+    rdfs:label "Lacerta" .
+
+publisher:6123 a bg:Publisher ;
+    rdfs:label "Red Glove" .
+
+publisher:8832 a bg:Publisher ;
+    rdfs:label "Funforge" .
+
+publisher:9325 a bg:Publisher ;
+    rdfs:label "Lifestyle Boardgames Ltd" .
+
+category:1001 a skos:Concept ;
+    skos:inScheme scheme:bgg-categories ;
+    skos:prefLabel "Political"@en .
+
+category:1010 a skos:Concept ;
+    skos:inScheme scheme:bgg-categories ;
+    skos:prefLabel "Fantasy"@en .
+
+category:1015 a skos:Concept ;
+    skos:inScheme scheme:bgg-categories ;
+    skos:prefLabel "Civilization"@en .
+
+category:1020 a skos:Concept ;
+    skos:inScheme scheme:bgg-categories ;
+    skos:prefLabel "Exploration"@en .
+
+category:1088 a skos:Concept ;
+    skos:inScheme scheme:bgg-categories ;
+    skos:prefLabel "Industry / Manufacturing"@en .
+
+mechanic:2001 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Action Points"@en .
+
+mechanic:2004 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Set Collection"@en .
+
+mechanic:2008 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Trading"@en .
+
+mechanic:2011 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Modular Board"@en .
+
+mechanic:2018 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Campaign / Battle Card Driven"@en .
+
+mechanic:2023 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Cooperative Game"@en .
+
+mechanic:2046 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Area Movement"@en .
+
+mechanic:2080 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Area Majority / Influence"@en .
+
+mechanic:2082 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Worker Placement"@en .
+
+mechanic:2664 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Deck, Bag, and Pool Building"@en .
+
+mechanic:2676 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Grid Movement"@en .
+
+mechanic:2685 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Player Elimination"@en .
+
+mechanic:2822 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Scenario / Mission / Campaign Game"@en .
+
+mechanic:2824 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Legacy Game"@en .
+
+mechanic:2846 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Once-Per-Game Abilities"@en .
+
+mechanic:2849 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Tech Trees / Tech Tracks"@en .
+
+mechanic:2864 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Force Commitment"@en .
+
+mechanic:2911 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Ownership"@en .
+
+person:6651 a bg:Person ;
+    rdfs:label "Corey Konieczka" .
+
+person:92370 a bg:Person ;
+    rdfs:label "Paul Dennen" .
+
+publisher:17 a bg:Publisher ;
+    rdfs:label "Fantasy Flight Games" .
+
+publisher:21608 a bg:Publisher ;
+    rdfs:label "CMON Global Limited" .
+
+publisher:22380 a bg:Publisher ;
+    rdfs:label "Feuerland Spiele" .
+
+publisher:23043 a bg:Publisher ;
+    rdfs:label "ADC Blackfire Entertainment" .
+
+publisher:2366 a bg:Publisher ;
+    rdfs:label "Devir" .
+
+publisher:23756 a bg:Publisher ;
+    rdfs:label "MYBG Co., Ltd." .
+
+publisher:24844 a bg:Publisher ;
+    rdfs:label "Schwerkraft-Verlag" .
+
+publisher:264 a bg:Publisher ;
+    rdfs:label "Heidelberger Spieleverlag" .
+
+publisher:2973 a bg:Publisher ;
+    rdfs:label "Edge Entertainment" .
+
+publisher:3218 a bg:Publisher ;
+    rdfs:label "Lautapelit.fi" .
+
+publisher:33626 a bg:Publisher ;
+    rdfs:label "Lucky Duck Games" .
+
+publisher:33706 a bg:Publisher ;
+    rdfs:label "Dire Wolf" .
+
+publisher:39249 a bg:Publisher ;
+    rdfs:label "sternenschimmermeer" .
+
+publisher:44241 a bg:Publisher ;
+    rdfs:label "Regatul Jocurilor" .
+
+publisher:4785 a bg:Publisher ;
+    rdfs:label "Ghenos Games" .
+
+publisher:4932 a bg:Publisher ;
+    rdfs:label "White Goblin Games" .
+
+publisher:55404 a bg:Publisher ;
+    rdfs:label "Tabletop KZ" .
+
+publisher:6194 a bg:Publisher ;
+    rdfs:label "Delta Vision Publishing" .
+
+publisher:6214 a bg:Publisher ;
+    rdfs:label "Kaissa Chess & Games" .
+
+publisher:7466 a bg:Publisher ;
+    rdfs:label "Rebel Sp. z o.o." .
+
+publisher:9068 a bg:Publisher ;
+    rdfs:label "Broadway Toys LTD" .
+
+category:1019 a skos:Concept ;
+    skos:inScheme scheme:bgg-categories ;
+    skos:prefLabel "Wargame"@en .
+
+category:1021 a skos:Concept ;
+    skos:inScheme scheme:bgg-categories ;
+    skos:prefLabel "Economic"@en .
+
+category:1064 a skos:Concept ;
+    skos:inScheme scheme:bgg-categories ;
+    skos:prefLabel "Movies / TV / Radio theme"@en .
+
+category:1084 a skos:Concept ;
+    skos:inScheme scheme:bgg-categories ;
+    skos:prefLabel "Environmental"@en .
+
+category:1086 a skos:Concept ;
+    skos:inScheme scheme:bgg-categories ;
+    skos:prefLabel "Territory Building"@en .
+
+category:1093 a skos:Concept ;
+    skos:inScheme scheme:bgg-categories ;
+    skos:prefLabel "Novel-based"@en .
+
+category:1113 a skos:Concept ;
+    skos:inScheme scheme:bgg-categories ;
+    skos:prefLabel "Space Exploration"@en .
+
+mechanic:2002 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Tile Placement"@en .
+
+mechanic:2019 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Team-Based Game"@en .
+
+mechanic:2041 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Open Drafting"@en .
+
+mechanic:2072 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Dice Rolling"@en .
+
+mechanic:2686 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Take That"@en .
+
+mechanic:2828 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Turn Order: Progressive"@en .
+
+mechanic:2850 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Events"@en .
+
+mechanic:2875 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "End Game Bonuses"@en .
+
+mechanic:2876 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Race"@en .
+
+mechanic:2901 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Delayed Purchase"@en .
+
+mechanic:2947 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Movement Points"@en .
+
+publisher:15889 a bg:Publisher ;
+    rdfs:label "Asterion Press" .
+
+publisher:18852 a bg:Publisher ;
+    rdfs:label "Hobby World" .
+
+publisher:21053 a bg:Publisher ;
+    rdfs:label "Rexhry" .
+
+publisher:30677 a bg:Publisher ;
+    rdfs:label "Maldito Games" .
+
+publisher:34801 a bg:Publisher ;
+    rdfs:label "Lavka Games" .
+
+publisher:36563 a bg:Publisher ;
+    rdfs:label "Reflexshop" .
+
+publisher:4617 a bg:Publisher ;
+    rdfs:label "Galakta" .
+
+publisher:51614 a bg:Publisher ;
+    rdfs:label "MIPL" .
+
+publisher:7992 a bg:Publisher ;
+    rdfs:label "MINDOK" .
+
+mechanic:2026 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Hexagon Grid"@en .
+
+mechanic:2902 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Income"@en .
+
+mechanic:2912 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Contracts"@en .
+
+mechanic:2914 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Increase Value of Unchosen Resources"@en .
+
+publisher:8820 a bg:Publisher ;
+    rdfs:label "Gémklub" .
+
+category:1016 a skos:Concept ;
+    skos:inScheme scheme:bgg-categories ;
+    skos:prefLabel "Science Fiction"@en .
+
+mechanic:2819 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Solo / Solitaire Game"@en .
+
+mechanic:2857 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Card Play Conflict Resolution"@en .
+
+mechanic:3099 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Multi-Use Cards"@en .
+
+publisher:15605 a bg:Publisher ;
+    rdfs:label "Galápagos Jogos" .
+
+publisher:58739 a bg:Publisher ;
+    rdfs:label "Geekach LLC" .
+
+mechanic:2897 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Variable Set-up"@en .
+
+publisher:3475 a bg:Publisher ;
+    rdfs:label "Arclight Games" .
+
+publisher:8291 a bg:Publisher ;
+    rdfs:label "Korea Boardgames" .
+
+mechanic:2040 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Hand Management"@en .
+
+mechanic:3100 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Tags"@en .
+
+mechanic:2015 a skos:Concept ;
+    skos:inScheme scheme:bgg-mechanics ;
+    skos:prefLabel "Variable Player Powers"@en .
+
+scheme:bgg-categories a skos:ConceptScheme ;
+    skos:prefLabel "BGG Board Game Categories"@en .
+
+scheme:bgg-mechanics a skos:ConceptScheme ;
+    skos:prefLabel "BGG Board Game Mechanics"@en .
+

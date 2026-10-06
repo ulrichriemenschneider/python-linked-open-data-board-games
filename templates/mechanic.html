@@ -1,22 +1,21 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ mechanic.label }}</title>
-</head>
+{% extends "base.html" %}
 
-<body>
+{% block title %}
+    {{ mechanic.label }} | Board Game Linked Data
+{% endblock %}
 
-    <h1>{{ mechanic.label }}</h1>
+{% block content %}
 
-    <h2>Concept</h2>
+    <h2>{{ mechanic.label }}</h2>
+
+    <h3>Concept</h3>
 
     <p>
         <strong>IRI:</strong>
         {{ mechanic.iri }}
     </p>
 
-    <h2>Concept Scheme</h2>
+    <h3>Concept Scheme</h3>
 
     <p>
         {{ mechanic.scheme.label }}
@@ -27,7 +26,7 @@
         {{ mechanic.scheme.iri }}
     </p>
 
-    <h2>Verwendet von</h2>
+    <h3>Verwendet von</h3>
 
     <ul>
         {% for game in mechanic.games %}
@@ -39,5 +38,4 @@
         {% endfor %}
     </ul>
 
-</body>
-</html>
+{% endblock %}

@@ -1,21 +1,19 @@
-<!DOCTYPE html>
-<html lang="de">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>Board Game Linked Data</title>
-</head>
+{% block title %}
+    Startseite | Board Game Linked Data
+{% endblock %}
 
-<body>
+{% block content %}
 
-    <h1>Board Game Linked Data</h1>
+    <h2>Board Game Linked Data</h2>
 
     <p>
         Eine kleine Linked-Data-Anwendung mit RDF,
         SKOS und SPARQL.
     </p>
 
-    <h2>Spiele</h2>
+    <h3>Spiele</h3>
 
     <ul>
         {% for game in data.games %}
@@ -27,7 +25,7 @@
         {% endfor %}
     </ul>
 
-    <h2>Mechaniken</h2>
+    <h3>Mechaniken</h3>
 
     <ul>
         {% for mechanic in data.mechanics %}
@@ -39,7 +37,7 @@
         {% endfor %}
     </ul>
 
-    <h2>Kategorien</h2>
+    <h3>Kategorien</h3>
 
     <ul>
         {% for category in data.categories %}
@@ -51,6 +49,4 @@
         {% endfor %}
     </ul>
 
-</body>
-
-</html>
+{% endblock %}

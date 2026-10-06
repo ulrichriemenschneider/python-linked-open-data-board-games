@@ -1,23 +1,21 @@
-<!DOCTYPE html>
-<html lang="de">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>{{ category.label }}</title>
-</head>
+{% block title %}
+    {{ category.label }} | Board Game Linked Data
+{% endblock %}
 
-<body>
+{% block content %}
 
-    <h1>{{ category.label }}</h1>
+    <h2>{{ category.label }}</h2>
 
-    <h2>Concept</h2>
+    <h3>Concept</h3>
 
     <p>
         <strong>IRI:</strong>
         {{ category.iri }}
     </p>
 
-    <h2>Concept Scheme</h2>
+    <h3>Concept Scheme</h3>
 
     <p>
         {{ category.scheme.label }}
@@ -28,7 +26,7 @@
         {{ category.scheme.iri }}
     </p>
 
-    <h2>Verwendet von</h2>
+    <h3>Verwendet von</h3>
 
     <ul>
         {% for game in category.games %}
@@ -40,6 +38,4 @@
         {% endfor %}
     </ul>
 
-</body>
-
-</html>
+{% endblock %}

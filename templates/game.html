@@ -1,16 +1,14 @@
-<!DOCTYPE html>
-<html lang="de">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>{{ game.name }}</title>
-</head>
+{% block title %}
+    {{ game.name }} | Board Game Linked Data
+{% endblock %}
 
-<body>
+{% block content %}
 
-    <h1>{{ game.name }}</h1>
+    <h2>{{ game.name }}</h2>
 
-    <h2>Spiel</h2>
+    <h3>Spiel</h3>
 
     <p>
         <strong>IRI:</strong>
@@ -29,7 +27,7 @@
         {{ game.max_players }}
     </p>
 
-    <h2>Mechaniken</h2>
+    <h3>Mechaniken</h3>
 
     <ul>
         {% for mechanic in game.mechanics %}
@@ -41,7 +39,7 @@
         {% endfor %}
     </ul>
 
-    <h2>Kategorien</h2>
+    <h3>Kategorien</h3>
 
     <ul>
         {% for category in game.categories %}
@@ -53,5 +51,4 @@
         {% endfor %}
     </ul>
 
-</body>
-</html>
+{% endblock %}
